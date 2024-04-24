@@ -6,6 +6,7 @@ export function Header() {
   return (
     <div className={styles.header}>
       <img src={feedLogo} alt="Logotipo do feed" />
+      <span>eed</span>
     </div>
   )
 }
