@@ -17,9 +17,9 @@ const posts = [
       role: 'Web Developer'
     },
     content: [
-      { type: 'paragraph', content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.' },
-      { type: 'paragraph', content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum sapiente veritatis quo, dolores corporis vel perferendis, doloribus hic quibusdam cupiditate repudiandae debitis. Velit aliquid doloribus omnis sequi distinctio corrupti error?' },
-      { type: 'link', content: 'Lorem ipsum dolor sit amet!' },
+      { id: 1, type: 'paragraph', content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.' },
+      { id: 2, type: 'paragraph', content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum sapiente veritatis quo, dolores corporis vel perferendis, doloribus hic quibusdam cupiditate repudiandae debitis. Velit aliquid doloribus omnis sequi distinctio corrupti error?' },
+      { id: 3, type: 'link', content: 'Lorem ipsum dolor sit amet!' },
     ],
     publishedAt: new Date('2024-04-24 20:50:17')
   },
@@ -31,10 +31,10 @@ const posts = [
       role: 'Web Design'
     },
     content: [
-      { type: 'paragraph', content: 'Earum sapiente veritatis quo.' },
-      { type: 'paragraph', content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum sapiente veritatis quo, dolores corporis vel perferendis, doloribus hic quibusdam cupiditate repudiandae debitis. Velit aliquid doloribus omnis sequi distinctio corrupti error?' },
-      { type: 'paragraph', content: 'Dolores corporis vel perferendis, doloribus hic quibusdam cupiditate repudiandae debitis. Velit aliquid doloribus omnis sequi distinctio corrupti error?' },
-      { type: 'link', content: 'Earum sapiente!' },
+      { id: 1, type: 'paragraph', content: 'Earum sapiente veritatis quo.' },
+      { id: 2, type: 'paragraph', content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum sapiente veritatis quo, dolores corporis vel perferendis, doloribus hic quibusdam cupiditate repudiandae debitis. Velit aliquid doloribus omnis sequi distinctio corrupti error?' },
+      { id: 3, type: 'paragraph', content: 'Dolores corporis vel perferendis, doloribus hic quibusdam cupiditate repudiandae debitis. Velit aliquid doloribus omnis sequi distinctio corrupti error?' },
+      { id: 4, type: 'link', content: 'Earum sapiente!' },
     ],
     publishedAt: new Date('2024-04-23 20:51:59')
   },
@@ -52,6 +52,7 @@ export function App() {
           {posts.map(post => {
             return (
               <Post
+                key={post.id}
                 author={post.author}
                 content={post.content}
                 publishedAt={post.publishedAt}

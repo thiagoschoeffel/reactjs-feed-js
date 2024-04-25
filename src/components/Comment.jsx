@@ -1,9 +1,11 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import { Avatar } from './Avatar'
 import { ThumbsUp, Trash } from 'phosphor-react'
 
 import styles from './Comment.module.css'
 
-export function Comment() {
+export function Comment({ content }) {
   return (
     <div className={styles.comment}>
       <Avatar
@@ -29,7 +31,7 @@ export function Comment() {
             </button>
           </header>
 
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime cum tempora id nisi blanditiis explicabo quisquam rerum, molestiae culpa ex reprehenderit!</p>
+          <p>{content}</p>
         </div>
 
         <footer>
