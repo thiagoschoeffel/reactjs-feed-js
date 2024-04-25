@@ -1,40 +1,53 @@
+/* eslint-disable react/jsx-key */
+/* eslint-disable react/prop-types */
+import { format, formatDistanceToNow } from 'date-fns'
+import ptBR from 'date-fns/locale/pt-BR'
+
 import { Avatar } from './Avatar'
 import { Comment } from './Comment'
 
 import styles from './Post.module.css'
 
-export function Post() {
+export function Post({ author, publishedAt, content }) {
+  const publishedAtDateFormatted = format(publishedAt, "d 'de' LLLL 'às' HH:mm'h'", {
+    locale: ptBR
+  })
+
+  const publishedAtDateRelativeToNow = formatDistanceToNow(publishedAt, {
+    locale: ptBR,
+    addSuffix: true
+  })
+
   return (
     <article className={styles.post}>
       <header>
         <div className={styles.author}>
           <Avatar
-            src="https://github.com/thiagoschoeffel.png"
+            src={author.avatarUrl}
           />
 
           <div className={styles.authorInfo}>
-            <strong>Thiago Schoeffel</strong>
-            <span>Web Developer</span>
+            <strong>{author.name}</strong>
+            <span>{author.role}</span>
           </div>
         </div>
 
         <time
-          title="23 de Abril às 21:43h"
-          dateTime="2024-04-23 21:43:02"
+          title={publishedAtDateFormatted}
+          dateTime={publishedAt.toISOString()}
         >
-          Publicado há 1 hora
+          {publishedAtDateRelativeToNow}
         </time>
       </header>
 
       <div className={styles.content}>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum sapiente veritatis quo, dolores corporis vel perferendis, doloribus hic quibusdam cupiditate repudiandae debitis. Velit aliquid doloribus omnis sequi distinctio corrupti error?</p>
-        <p>👉🏻{' '}<a href="">Lorem ipsum dolor sit amet!</a></p>
-        <p>
-          <a href="#">#Lorem</a>{' '}
-          <a href="#">#ipsum</a>{' '}
-          <a href="#">#dolor</a>
-        </p>
+        {content.map(line => {
+          if (line.type === 'paragraph') {
+            return <p>{line.content}</p>
+          } else if (line.type === 'link') {
+            return <p><a href="#">{line.content}</a></p>
+          }
+        })}
       </div>
 
       <form className={styles.commentForm}>
